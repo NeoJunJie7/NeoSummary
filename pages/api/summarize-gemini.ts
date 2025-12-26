@@ -72,7 +72,7 @@ Your task:
 - Do not add external information.
 - Avoid listing examples in parentheses or asides that can be omitted.
 
-- SPECIAL RULES FOR CHINESE TEXT:
+- SPECIAL RULES FOR CHINESE TEXT (only apply when the input text is primarily Chinese):
   * Ensure every sentence is grammatically complete with a Subject-Predicate-Object structure.
   * NEVER end a sentence with a dangling modifier or prepositional phrase (e.g., avoid ending with "...尤其对于老年人"). 
   * If mentioning a specific group at the end, use concluding verbs like "...尤为重要", "...效果显著", or "...具有积极影响".
