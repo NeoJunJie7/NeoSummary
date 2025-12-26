@@ -68,7 +68,7 @@ TEXT:
 function fallbackBullets(text: string, maxBullets: number): string[] {
   // Split on newlines and sentence boundaries, keep meaningful bits
   const chunks = text
-    .split(/\n{2,}/) // paragraphs first
+    .split(/\n{2,}/) 
     .flatMap(p =>
       p.split(/(?<=[.!?])\s+(?=[A-Z(])/).map(s => s.trim())
     )

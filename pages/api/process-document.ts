@@ -24,8 +24,8 @@ async function renderPdfPage(page: any) {
   let lastXEnd = 0;
 
   // Tune thresholds as needed per PDF
-  const LINE_THRESHOLD_MULT = 0.8;     // new line if y changes by ~font height
-  const SPACE_THRESHOLD_MULT = 0.10;   // insert space if gap > 10% of font height
+  const LINE_THRESHOLD_MULT = 0.8;     
+  const SPACE_THRESHOLD_MULT = 0.10;   
 
   for (const it of items) {
     const [a, b, c, d, e, f] = it.transform; // e=x, f=y

@@ -1,4 +1,3 @@
-// pages/api/save-summary.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { firestore, firebaseAdmin } from '../../lib/firebase-admin'; // Adjust path if needed
 

@@ -17,8 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const summariesRef = firestore.collection('summaries');
     const q = summariesRef
       .where('userId', '==', userId);
-      // Note: Removed orderBy to avoid requiring a composite index
-      // We'll sort in memory instead
+      
 
     const snapshot = await q.get();
 
@@ -30,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return {
         id: doc.id,
         ...data,
-        timestamp: ts,                 // normalized number | null
+        timestamp: ts,                 
         timestampIso: ts ? new Date(ts).toISOString() : null,
       };
     }).sort((a, b) => {
@@ -45,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   } catch (error) {
     console.error('SERVER ERROR: Failed to fetch summaries from Firestore:', error);
-    // This server error will be caught by line 47 in the frontend
+    
     return res.status(500).json({ error: 'Internal server error while retrieving history.' });
   }
 }

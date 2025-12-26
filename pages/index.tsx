@@ -494,24 +494,6 @@ function Index() {
       };
       saveSummaryHistory(`Summary: ${new Date().toLocaleDateString()}`, inputText, summary, config);
       
-      {/*
-      // Show summary completion notification if enabled
-      try {
-        const settings = JSON.parse(localStorage.getItem(getSettingsKey(user?.uid)) || "{}");
-        if (settings.summaryNotif !== false) { // Default to true if not set
-          setMessage(uiLanguage === "zh" ? "✓ 摘要完成！" : uiLanguage === "ms" ? "✓ Ringkasan siap!" : "✓ Summary completed!");
-          setTimeout(() => {
-            if (user) {
-              setMessage(`Welcome ${user.displayName || user.email}`);
-            } else {
-              setMessage("Welcome");
-            }
-          }, 3000);
-        }
-      } catch (e) {
-        // Ignore errors
-      }
-      */}
       
       // Auto-translate if enabled and language is selected
       // Check both selectedLang state and defaultTranslateLang from settings
@@ -991,80 +973,6 @@ function Index() {
 
           {/* Toggle Options */}
           <div style={{ marginBottom: '20px' }}>
-            {/*
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-              <span>{tr("highlight")}</span>
-              <label style={{ position: 'relative', display: 'inline-block', width: '40px', height: '20px' }}>
-                <input 
-                  type="checkbox" 
-                  checked={highlight} 
-                  onChange={(e) => setHighlight(e.target.checked)}
-                  style={{ opacity: 0, width: 0, height: 0 }}
-                />
-                <span style={{ 
-                  position: 'absolute', 
-                  cursor: 'pointer', 
-                  top: 0, 
-                  left: 0, 
-                  right: 0, 
-                  bottom: 0, 
-                  backgroundColor: highlight ? '#4CAF50' : '#ccc',
-                  borderRadius: '20px',
-                  transition: '0.4s'
-                }}>
-                  <span style={{
-                    position: 'absolute',
-                    content: '',
-                    height: '16px',
-                    width: '16px',
-                    left: highlight ? '22px' : '2px',
-                    bottom: '2px',
-                    backgroundColor: 'white',
-                    borderRadius: '50%',
-                    transition: '0.4s'
-                  }}></span>
-                </span>
-              </label>
-            </div>
-            */}
-
-            {/*
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-              <span>Annotation</span>
-              <label style={{ position: 'relative', display: 'inline-block', width: '40px', height: '20px' }}>
-                <input 
-                  type="checkbox" 
-                  checked={annotation} 
-                  onChange={(e) => setAnnotation(e.target.checked)}
-                  style={{ opacity: 0, width: 0, height: 0 }}
-                />
-                <span style={{ 
-                  position: 'absolute', 
-                  cursor: 'pointer', 
-                  top: 0, 
-                  left: 0, 
-                  right: 0, 
-                  bottom: 0, 
-                  backgroundColor: annotation ? '#4CAF50' : '#ccc',
-                  borderRadius: '20px',
-                  transition: '0.4s'
-                }}>
-                  <span style={{
-                    position: 'absolute',
-                    content: '',
-                    height: '16px',
-                    width: '16px',
-                    left: annotation ? '22px' : '2px',
-                    bottom: '2px',
-                    backgroundColor: 'white',
-                    borderRadius: '50%',
-                    transition: '0.4s'
-                  }}></span>
-                </span>
-              </label>
-            </div>
-            */}
-
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <span>{tr("translate")}</span>
               <label style={{ position: 'relative', display: 'inline-block', width: '40px', height: '20px' }}>
@@ -1184,10 +1092,10 @@ function Index() {
         {/* Content Area */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '20px', minWidth: 0 }}>
           <div style={{ display: 'flex', flex: 1, gap: '20px', minHeight: 0 }}>
-            {/* Left input/highlight box */}
+            {/* Left input*/}
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0 }}>
               <div style={{ position: 'relative', flex: 1, overflow: 'hidden', minHeight: 0 }}>
-                {/* textarea or highlight */}
+                {/* textarea*/}
                 {!highlight ? (
                   <textarea
                     value={inputText}
@@ -1235,30 +1143,6 @@ function Index() {
                     }}
                     dangerouslySetInnerHTML={{ __html: highlightHtml || escapeHtml(inputText || "Input text here") }}
                   />
-                )}
-                {highlight && (
-                  <div style={{ 
-                    position: 'absolute', 
-                    top: 8, 
-                    right: 12, 
-                    fontSize: 11, 
-                    background: 'rgba(255,255,255,0.95)', 
-                    padding: '4px 8px', 
-                    borderRadius: 4, 
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
-                    pointerEvents: 'none',
-                    zIndex: 10,
-                    maxWidth: '150px',
-                    textAlign: 'center'
-                  }}>
-                    {highlightLoading
-                      ? '🔄 Analyzing...'
-                      : highlightError
-                        ? '⚠️ Error'
-                        : keyPoints.length > 0
-                          ? `✨ ${keyPoints.length} key point${keyPoints.length !== 1 ? 's' : ''}`
-                          : '⚠️ No key points'}
-                  </div>
                 )}
               </div>
             </div>
