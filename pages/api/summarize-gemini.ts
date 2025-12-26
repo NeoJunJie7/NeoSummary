@@ -39,9 +39,9 @@ export default async function handler(
     const model = client.getGenerativeModel({
       model: "gemini-2.5-flash-lite",
       generationConfig: {
-        temperature: 0.05,
-        topP: 0.8,
-        topK: 40,
+        temperature: 0,
+        topP: 0.1,
+        topK: 1,
       },
     });
 
@@ -70,7 +70,14 @@ Your task:
 - Keep the original language.
 - No bullet points or headings.
 - Do not add external information.
-- If the text is chinese, try to change the sentence structure in a way that reduces the word count if possible, but remains the meaning and naturally.
+- Avoid listing examples in parentheses or asides that can be omitted.
+
+- SPECIAL RULES FOR CHINESE TEXT:
+  * Ensure every sentence is grammatically complete with a Subject-Predicate-Object structure.
+  * NEVER end a sentence with a dangling modifier or prepositional phrase (e.g., avoid ending with "...尤其对于老年人"). 
+  * If mentioning a specific group at the end, use concluding verbs like "...尤为重要", "...效果显著", or "...具有积极影响".
+  * Rewrite descriptive phrases into concise "Verb + Object" chains (例如：将“对健康有积极作用”改为“有益健康”).
+  * Ensure the final character of every paragraph provides a sense of "closure" (句末务必落实到动词或形容词，不可停留在介词或连词上).
 
 Output rules:
 - Break into multiple paragraphs whenever a new idea starts
