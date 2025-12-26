@@ -1224,7 +1224,7 @@ function Index() {
                       }}
                     >
                       <option value="balanced">Balanced</option>
-                      <option value="priority">Priority-based</option>
+                      <option value="priority">WordCount Priority</option>
                     </select>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
