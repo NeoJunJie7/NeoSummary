@@ -305,8 +305,7 @@ export default function SummaryHistory() {
 
                 {selectedSummary.config && Object.keys(selectedSummary.config).length > 0 && (
                   <div style={configStyle}>
-                    <strong>Settings:</strong> Length: {selectedSummary.config.lengthPercent}%, 
-                    Model: {selectedSummary.config.model || 'N/A'}
+                    <strong>Settings:</strong> Length: {selectedSummary.config.lengthPercent}%
                   </div>
                 )}
               </>
