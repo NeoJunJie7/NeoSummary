@@ -8,11 +8,9 @@ import { countWords } from '../lib/utils';
 function Index() {
   const [message, setMessage] = useState("Loading");
   const [inputText, setInputText] = useState("");
-  // Renamed state to hold the most recent text displayed (either summary or translation)
   const [displayText, setDisplayText] = useState("");
   const [originalSummary, setOriginalSummary] = useState(""); 
   
-  // NEW State for Save Dialog and History
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false); 
   const [summaryTitle, setSummaryTitle] = useState(""); 
 
@@ -37,17 +35,14 @@ function Index() {
   // Help modal state
   const [isHelpOpen, setIsHelpOpen] = useState(false);
 
-  // Hugging Face / model loading state
   const [hfLoading, setHfLoading] = useState(false);
   const [isTranslating, setIsTranslating] = useState(false);
 
-  // live counts
   const [wordCount, setWordCount] = useState<number>(0);
   const [charCount, setCharCount] = useState<number>(0);
   const [outputWordCount, setOutputWordCount] = useState<number>(0);
   const [outputCharCount, setOutputCharCount] = useState<number>(0);
 
-  // target translation language (user-selected)
   const langOptions = [
     { value: "zh", label: "Chinese" },
     { value: "ms", label: "Malay" },
@@ -489,7 +484,7 @@ function Index() {
       
       // Store the original HTML summary and set it as the display text
       setOriginalSummary(summary || "No summary returned.");
-      setDisplayText(summary || "No summary returned."); // Will be updated by the useEffect above
+      setDisplayText(summary || "No summary returned.");
       
       // Call the secure save function (only if user is logged in)
       const config = {
