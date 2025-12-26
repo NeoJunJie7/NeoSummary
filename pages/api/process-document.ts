@@ -12,7 +12,6 @@ export const config = {
 
 // Add a page renderer that reconstructs lines and injects spaces
 async function renderPdfPage(page: any) {
-  // Critical: do not combine text items so we can measure gaps
   const textContent = await page.getTextContent({ disableCombineTextItems: true });
 
   type Item = { str: string; transform: number[]; width: number; height: number; };

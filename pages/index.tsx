@@ -74,7 +74,7 @@ function Index() {
       translate: "Translate",
       bullets: "Bullet points",
       language: "Language",
-      upload: "Upload File",
+      upload: "Upload File (docx, pdf, txt) Max 15MB",
       inputPlaceholder: "Input text here",
       summaryPlaceholder: "Summary result will appear here",
       noBullets: "No bullet points generated.",
