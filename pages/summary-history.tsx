@@ -42,6 +42,8 @@ export default function SummaryHistory() {
       setError(null);
       try {
         const response = await fetch(`/api/get-summaries?userId=${user.uid}`);
+        const text = await response.text(); 
+        console.log("RAW SERVER RESPONSE:", text);
         const data = await response.json();
 
         if (!response.ok) {
