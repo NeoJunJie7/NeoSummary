@@ -1,18 +1,20 @@
 // lib/firebase-admin.ts
 import admin from 'firebase-admin';
 
-{/*}
-// Check for the key explicitly and throw an error if missing
+// Check for required environment variables
+const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
 const privateKey = process.env.FIREBASE_PRIVATE_KEY;
-if (!privateKey) {
-  throw new Error("Missing FIREBASE_PRIVATE_KEY environment variable. Check your .env.local or deployment settings.");
-}*/}
+
+if (!projectId || !clientEmail || !privateKey) {
+  throw new Error("Missing required Firebase environment variables. Check NEXT_PUBLIC_FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY.");
+}
 
 const serviceAccount = {
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  projectId,
+  clientEmail,
   // This replace() is critical for Vercel to handle the private key's newlines
-  privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  privateKey: privateKey.replace(/\\n/g, '\n'),
 };
 
 if (!admin.apps.length) {
