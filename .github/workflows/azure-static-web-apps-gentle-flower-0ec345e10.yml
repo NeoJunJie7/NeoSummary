@@ -18,6 +18,10 @@ jobs:
        id-token: write
        contents: read
     steps:
+      - name: Use Node.js 20.x # Set up the desired Node.js version
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts'
       - name: Fix git config permissions
         run: |
           sudo chown -R $USER:$USER .git
@@ -62,6 +66,7 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
+
 
 
 
