@@ -1,15 +1,27 @@
 // lib/firebase-admin.ts
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 import admin from 'firebase-admin';
-import {getFirestore} from 'firebase/firestore';
 
-
+{/*}
 // Check for the key explicitly and throw an error if missing
 const privateKey = process.env.FIREBASE_PRIVATE_KEY;
 if (!privateKey) {
   throw new Error("Missing FIREBASE_PRIVATE_KEY environment variable. Check your .env.local or deployment settings.");
+}*/}
+
+const serviceAccount = {
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  // This replace() is critical for Vercel to handle the private key's newlines
+  privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+};
+
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
 }
 
+{/*}
 // Proceed with initialization using the validated and replaced key
 if (!admin.apps.length) {
   admin.initializeApp({
@@ -22,11 +34,10 @@ if (!admin.apps.length) {
     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   });
 }
+  */}
 
-const db = getFirestore();
 
 // Export the default app (you can also export bucket, firestore, etc.)
 export const firebaseAdmin = admin;
-export const bucket = admin.storage().bucket();
 export const firestore = admin.firestore();
 export const authAdmin = admin.auth();
