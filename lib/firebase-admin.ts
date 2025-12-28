@@ -1,8 +1,8 @@
 // lib/firebase-admin.ts
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 import admin from 'firebase-admin';
 import {getFirestore} from 'firebase/firestore';
 
-const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 
 // Check for the key explicitly and throw an error if missing
 const privateKey = process.env.FIREBASE_PRIVATE_KEY;
